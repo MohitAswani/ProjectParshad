@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.parshad.R
 import com.example.parshad.databinding.ItemProblemBinding
 import com.example.parshad.util.Constants
 import com.example.parshad.data.entities.Problems
 
-class ProblemAdapter: RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
+class ProblemAdapter : RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
 
     companion object {
         const val TAG = "ProblemAdapter"
@@ -41,37 +42,53 @@ class ProblemAdapter: RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
 
         fun setIssues(problem: Problems) {
-            Glide.with(binding.root)
-                .load(getUserImage(problem.posterImage))
-                .into(binding.userProfile)
+            problem.posterImage.let {
+                if (it.isNotEmpty()) {
+                    Glide.with(binding.root)
+                        .load(getUserImage(problem.posterImage))
+                        .fallback(R.drawable.example_photo)
+                        .into(binding.userProfile)
+                }
+                else
+                {
+                    Glide.with(binding.root)
+                        .load(R.drawable.example_photo)
+                        .into(binding.userProfile)
+                }
+            }
 
-            binding.postUserName.text=problem.posterName
-            binding.postUserAddress.text=problem.posterWard
-            binding.tvDesc.text=problem.description
+            binding.postUserName.text = problem.posterName
+            binding.postUserAddress.text = problem.posterWard
+            binding.tvDesc.text = problem.description
 
-            when(problem.attachmentType){
-                "image"->{
-                    binding.userPost.visibility= View.VISIBLE
+            when (problem.attachmentType) {
+                "image" -> {
+                    binding.userPost.visibility = View.VISIBLE
                     Glide.with(binding.root)
                         .load(problem.attachment)
                         .into(binding.userPost)
                 }
-                Constants.KEY_VIDEO_TYPE->{
+                Constants.KEY_VIDEO_TYPE -> {
 //                    binding.userPostVideo.visibility=View.VISIBLE
 //                    binding.userPostVideo.setVideoURI(problem.attachment?.toUri())
                 }
-                Constants.KEY_PDF_TYPE->{
-                    binding.uploadedFile.visibility=View.VISIBLE
-                    binding.uploadedFileText.text="Attached file"
-                    binding.uploadedFile.setOnClickListener{
-                        onFileClickListener?.let {it(problem)}
+                Constants.KEY_PDF_TYPE -> {
+                    binding.uploadedFile.visibility = View.VISIBLE
+                    binding.uploadedFileText.text = "Attached file"
+                    binding.uploadedFile.setOnClickListener {
+                        onFileClickListener?.let { it(problem) }
                     }
                 }
-                else ->{
+                else -> {
                 }
             }
 
+            binding.root.setOnLongClickListener {
+                onProblemLongPressListener?.let { it(problem) } ?: false
+            }
+
         }
+
         private fun getUserImage(encodedImage: String): Bitmap {
             val bytes = Base64.decode(encodedImage, Base64.DEFAULT)
             return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
@@ -82,6 +99,12 @@ class ProblemAdapter: RecyclerView.Adapter<ProblemAdapter.ProblemViewHolder>() {
 
     fun setOnFileClickListener(listener: (Problems) -> Unit) {
         onFileClickListener = listener
+    }
+
+    private var onProblemLongPressListener: ((Problems) -> Boolean)? = null
+
+    fun setOnProblemLongPressListener(listener: (Problems) -> Boolean) {
+        onProblemLongPressListener = listener
     }
 
 
