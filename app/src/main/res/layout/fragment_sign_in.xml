@@ -168,7 +168,7 @@
                     android:id="@+id/male_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_marginRight="12dp"
                     app:cardBackgroundColor="#F8F5FD"
                     app:cardCornerRadius="7dp"
                     app:cardElevation="4dp"
@@ -186,7 +186,7 @@
                         android:padding="16dp"
                         android:text="@string/male"
                         android:textColor="@color/black"
-                        android:textSize="24sp"
+                        android:textSize="18sp"
                         />
                 </com.google.android.material.card.MaterialCardView>
 
@@ -194,7 +194,7 @@
                     android:id="@+id/female_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_marginHorizontal="12dp"
                     app:cardBackgroundColor="#F8F5FD"
                     app:cardCornerRadius="7dp"
                     app:cardElevation="4dp"
@@ -212,14 +212,14 @@
                         android:padding="16dp"
                         android:text="@string/female"
                         android:textColor="@color/black"
-                        android:textSize="24sp" />
+                        android:textSize="18sp" />
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/other_card"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="12dp"
+                    android:layout_marginHorizontal="12dp"
                     app:cardBackgroundColor="#F8F5FD"
                     app:cardCornerRadius="7dp"
                     app:cardElevation="4dp"
@@ -237,7 +237,7 @@
                         android:padding="16dp"
                         android:text="@string/other"
                         android:textColor="@color/black"
-                        android:textSize="24sp" />
+                        android:textSize="18sp" />
                 </com.google.android.material.card.MaterialCardView>
             </RadioGroup>
 

@@ -107,7 +107,7 @@
 
                 <EditText
                     android:id="@+id/inputotp1"
-                    android:layout_width="48dp"
+                    android:layout_width="42dp"
                     android:layout_height="wrap_content"
                     android:autofillHints="false"
                     android:background="@drawable/custom_input"
@@ -136,7 +136,7 @@
 
                 <EditText
                     android:id="@+id/inputotp2"
-                    android:layout_width="48dp"
+                    android:layout_width="42dp"
                     android:layout_height="wrap_content"
                     android:autofillHints="false"
                     android:background="@drawable/custom_input"
@@ -163,7 +163,7 @@
 
                 <EditText
                     android:id="@+id/inputotp3"
-                    android:layout_width="48dp"
+                    android:layout_width="42dp"
                     android:layout_height="wrap_content"
                     android:autofillHints="false"
                     android:background="@drawable/custom_input"
@@ -190,7 +190,7 @@
 
                 <EditText
                     android:id="@+id/inputotp4"
-                    android:layout_width="48dp"
+                    android:layout_width="42dp"
                     android:layout_height="wrap_content"
                     android:autofillHints="false"
                     android:background="@drawable/custom_input"
@@ -217,7 +217,7 @@
 
                 <EditText
                     android:id="@+id/inputotp5"
-                    android:layout_width="48dp"
+                    android:layout_width="42dp"
                     android:layout_height="wrap_content"
                     android:autofillHints="false"
                     android:background="@drawable/custom_input"
@@ -244,7 +244,7 @@
 
                 <EditText
                     android:id="@+id/inputotp6"
-                    android:layout_width="48dp"
+                    android:layout_width="42dp"
                     android:layout_height="wrap_content"
                     android:autofillHints="false"
                     android:background="@drawable/custom_input"
