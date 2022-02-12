@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="themeColor">#8C77E3</color>
+    <color name="fontColor">@color/white</color>
+    <color name="fontColorLight">#BFBFBF</color>
+</resources>

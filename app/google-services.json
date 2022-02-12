@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "639726468469",
+    "project_id": "parshad-4971a",
+    "storage_bucket": "parshad-4971a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639726468469:android:b3a2f206abb6583256273c",
+        "android_client_info": {
+          "package_name": "com.example.parshad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "639726468469-tucg70am59d0m5sb1kfm9ertrapvok8o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.parshad",
+            "certificate_hash": "9b335a2b5cdbf619bb78b8af03c291fd74a36946"
+          }
+        },
+        {
+          "client_id": "639726468469-md7n52f5mtba6o3cha65oimfjuiu90p3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzCBFp9X5wC_QcKDnyx7MdJgRrrIae79g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639726468469-md7n52f5mtba6o3cha65oimfjuiu90p3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

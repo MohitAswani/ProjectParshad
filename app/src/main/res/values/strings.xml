@@ -1,3 +1,42 @@
 <resources>
-    <string name="app_name">Parshad</string>
+    <string name="app_name">ParshadApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Login</string>
+    <string name="enter_your_mobile_number">Enter Your Mobile Number</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="_91">+91</string>
+    <string name="otp_msg">You will recieve an OTP on this number</string>
+    <string name="get_otp">Get OTP</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="sent_otp_text">We have sent 6 digit OTP to</string>
+    <string name="change">Change</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="verify">Verify</string>
+    <string name="profile">Profile</string>
+    <string name="sign_up_text">Please enter all the Details below:</string>
+    <string name="add_image">Add Image</string>
+    <string name="male">Male</string>
+    <string name="gender">Gender</string>
+    <string name="full_name">Full Name</string>
+    <string name="other">Other</string>
+    <string name="female">Female</string>
+    <string name="aadhar_number">Aadhar Number</string>
+    <string name="welcome">Welcome!!</string>
+    <string name="accomplished">Accomplished</string>
+    <string name="suggestion">Suggestion</string>
+    <string name="recent_problem">Recent Problem</string>
+    <string name="ompiled_a_list_of_essential_programs_to_get_you_started_many_of_these_apps_are_also_available_as_web_services_but_app_versions_have_the_advantage_of_offline_access_downloading_movies_or_music_to_local_storage_can_be_useful_when_you_are_expecting_hours_with_no_connection_even_if_you_just_want_to_write_emails_when_an_internet_connection_isn_t_available_you_may_want_to_be_able_to_read_the_messages_that_you_are_writing_replies_to_depending_on_the_browser_or_the_network_you_use_relying_on_web_services_can_also_cause_privacy_concerns">ompiled a list of essential programs to get you started. Many of these apps are also available as web services, but app versions have the advantage of offline access. Downloading movies or music to local storage can be useful when you are expecting hours with no connection. Even if you just want to write emails when an internet connection isn’t available, you may want to be able to read the messages that you are writing replies to. Depending on the browser or the network you use, relying on web services can also cause privacy concerns.</string>
+    <string name="problem">Problem</string>
+    <string name="you_can_post_your_problem_here">You can post your problem here:</string>
+    <string name="describe">Describe</string>
+    <string name="attachment">Attachment:</string>
+    <string name="video">Video</string>
+    <string name="pdf">Pdf</string>
+    <string name="submit">Submit</string>
+    <string name="your_suggestion_can_bring_a_huge_change_in_society">Your suggestion can bring a huge change in society:</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="problems">Problems</string>
+    <string name="add_problem">Add problem</string>
 </resources>
