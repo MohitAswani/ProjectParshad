@@ -18,11 +18,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.parshad.MyApplication
+import com.example.parshad.R
 import com.example.parshad.data.remote.AuthDatabase
 import com.example.parshad.databinding.ActivityMainBinding
 import com.example.parshad.ui.viewModels.MainViewModel
 import com.example.parshad.ui.viewModels.MainViewModelFactory
-import com.example.parshadapp.R
 
 
 class MainActivity : AppCompatActivity() {

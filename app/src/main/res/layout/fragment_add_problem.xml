@@ -25,17 +25,20 @@
             android:layout_marginTop="16dp"
             android:text="@string/problem"
             android:textSize="48sp"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/rectangle_top"
+            app:layout_constraintBottom_toBottomOf="@id/rectangle_top"
+            app:layout_constraintStart_toEndOf="@id/back_btn"
+            />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/back_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
             android:background="@null"
             android:src="@drawable/back_btn"
             app:layout_constraintEnd_toStartOf="@+id/Problem_top_txt"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/Problem_top_txt"
+            app:layout_constraintBottom_toBottomOf="@id/Problem_top_txt" />
 
         <TextView
             android:id="@+id/you_can_post_txt"

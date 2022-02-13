@@ -8,14 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.parshad.data.entities.User
 import com.example.parshad.data.remote.AuthDatabase
 import com.example.parshad.databinding.FragmentOtpBinding
-import com.example.parshadapp.data.entities.User
 import com.example.parshad.ui.AuthActivity
 import com.example.parshad.ui.MainActivity
-import com.example.parshadapp.util.Constants
+import com.example.parshad.util.Constants
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
@@ -160,7 +161,8 @@ class EnterOTPFragment : BaseFragment() {
             .addOnCompleteListener {
                 if (it.isSuccessful && it.result != null && it.result?.documents?.size!! > 0) {
                     val documentSnapshot = it.result?.documents?.get(0)
-                    (activity as AuthActivity).authViewModel.saveUserData(User(
+                    (activity as AuthActivity).authViewModel.saveUserData(
+                        User(
                         name = documentSnapshot?.getString(Constants.USER_NAME)?:"Error 404",
                         aadhar = documentSnapshot?.getString(Constants.USER_AADHAR)?:"Error 404",
                         phoneNumber = documentSnapshot?.getString(Constants.USER_PHONE_NUMBER)?:"Error 404",
@@ -168,7 +170,8 @@ class EnterOTPFragment : BaseFragment() {
                         image = documentSnapshot?.getString(Constants.USER_IMAGE)?:"Error 404",
                         gender = documentSnapshot?.getString(Constants.USER_GENDER)?:"Error 404",
                         userRole = documentSnapshot?.getString(Constants.USER_ROLE)?:"Error 404"
-                    ))
+                    )
+                    )
                     val intent = Intent(requireContext(), MainActivity::class.java)
                     intent.apply {
                         (activity as AuthActivity).authViewModel.setIsSignedInFromDataStore(true)

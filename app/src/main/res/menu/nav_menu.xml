@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/myProblemFragment"
+        android:icon="@drawable/mypost_icon"
+        android:title="@string/my_post">
+
+    </item>
+
+    <item
+        android:id="@+id/nav_home2"
+        android:icon="@drawable/settings_icon"
+        android:title="@string/settings" />
+    <item
+        android:id="@+id/nav_home3"
+        android:icon="@drawable/privacy_policy_icons"
+        android:title="@string/privacy_policy">
+
+    </item>
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/logout_icon"
+        android:title="@string/logout">
+
+    </item>
+
+
+</menu>

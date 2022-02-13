@@ -4,10 +4,10 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.parshad.MyApplication
+import com.example.parshad.R
 import com.example.parshad.data.remote.AuthDatabase
 import com.example.parshad.ui.viewModels.AuthViewModel
 import com.example.parshad.ui.viewModels.AuthViewModelFactory
-import com.example.parshadapp.R
 
 class AuthActivity : AppCompatActivity() {
     lateinit var authDatabase: AuthDatabase

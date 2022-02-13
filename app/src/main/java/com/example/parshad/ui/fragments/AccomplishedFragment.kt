@@ -1,4 +1,4 @@
-package com.example.parshadapp.ui.fragments
+package com.example.parshad.ui.fragments
 
 import android.app.DownloadManager
 import android.content.Context.DOWNLOAD_SERVICE
@@ -13,12 +13,11 @@ import android.webkit.CookieManager
 import android.webkit.URLUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.parshad.ui.fragments.BaseFragment
-import com.example.parshadapp.adapters.ProblemAdapter
-import com.example.parshadapp.databinding.FragmentAccomplishedBinding
+import com.example.parshad.adapters.ProblemAdapter
+import com.example.parshad.databinding.FragmentAccomplishedBinding
 import com.example.parshad.ui.MainActivity
 import com.example.parshad.ui.viewModels.MainViewModel
-import com.example.parshadapp.util.Status
+import com.example.parshad.util.Status
 
 class AccomplishedFragment : BaseFragment() {
 

@@ -15,9 +15,13 @@ import android.webkit.URLUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.example.parshad.R
+import com.example.parshad.data.entities.Problems
 import com.example.parshad.databinding.FragmentDashboardBinding
 import com.example.parshad.ui.MainActivity
 import com.example.parshad.ui.viewModels.MainViewModel
+import com.example.parshad.util.Constants
+import com.example.parshad.util.Status
 
 
 class DashboardFragment : BaseFragment() {

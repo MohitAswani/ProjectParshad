@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@id/dashboardFragment"
+    >
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.parshad.ui.fragments.DashboardFragment"
+        android:label="DashboardFragment" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_problemsFragment"
+            app:destination="@id/problemsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_suggestionFragment"
+            app:destination="@id/suggestionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/dashboardFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_accomplishedFragment"
+            app:destination="@id/accomplishedFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/problemsFragment"
+        android:name="com.example.parshad.ui.fragments.ProblemsFragment"
+        android:label="ProblemsFragment" >
+        <action
+            android:id="@+id/action_problemsFragment_to_addProblemFragment"
+            app:destination="@id/addProblemFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/problemsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/suggestionFragment"
+        android:name="com.example.parshad.ui.fragments.SuggestionFragment"
+        android:label="SuggestionFragment" >
+        <action
+            android:id="@+id/action_suggestionFragment_to_addSuggestionFragment"
+            app:destination="@id/addSuggestionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/suggestionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/accomplishedFragment"
+        android:name="com.example.parshad.ui.fragments.AccomplishedFragment"
+        android:label="AccomplishedFragment" />
+    <fragment
+        android:id="@+id/addProblemFragment"
+        android:name="com.example.parshad.ui.fragments.AddProblemFragment"
+        android:label="AddProblemFragment" >
+        <action
+            android:id="@+id/action_addProblemFragment_to_problemsFragment"
+            app:destination="@id/problemsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/dashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addSuggestionFragment"
+        android:name="com.example.parshad.ui.fragments.AddSuggestionFragment"
+        android:label="AddSuggestionFragment" >
+        <action
+            android:id="@+id/action_addSuggestionFragment_to_suggestionFragment"
+            app:destination="@id/suggestionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@id/dashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myProblemFragment"
+        android:name="com.example.parshad.ui.fragments.MyProblemFragment"
+        android:label="MyProblemFragment" />
+</navigation>

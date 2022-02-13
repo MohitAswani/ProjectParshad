@@ -8,6 +8,7 @@ import com.example.parshad.data.entities.User
 import com.example.parshad.data.remote.AuthDatabase
 import com.example.parshad.util.Constants
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class AuthViewModel(

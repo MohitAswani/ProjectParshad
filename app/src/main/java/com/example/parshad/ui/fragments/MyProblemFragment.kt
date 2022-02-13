@@ -14,8 +14,10 @@ import android.webkit.URLUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.parshad.adapters.ProblemAdapter
+import com.example.parshad.databinding.FragmentMyProblemBinding
 import com.example.parshad.ui.MainActivity
 import com.example.parshad.ui.viewModels.MainViewModel
+import com.example.parshad.util.Status
 
 class MyProblemFragment : BaseFragment() {
 

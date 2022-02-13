@@ -1,4 +1,4 @@
-package com.example.parshadapp.ui.fragments
+package com.example.parshad.ui.fragments
 
 class AddAccomplishedFragment {
 }

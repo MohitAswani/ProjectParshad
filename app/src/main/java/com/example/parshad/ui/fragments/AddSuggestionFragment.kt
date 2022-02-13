@@ -1,4 +1,4 @@
-package com.example.parshadapp.ui.fragments
+package com.example.parshad.ui.fragments
 
 import android.app.Activity.RESULT_OK
 import android.app.ProgressDialog
@@ -13,13 +13,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
-import com.example.parshad.ui.fragments.BaseFragment
-import com.example.parshadapp.R
-import com.example.parshadapp.data.entities.Suggestion
-import com.example.parshadapp.databinding.FragmentAddSuggestionBinding
+import com.example.parshad.R
+import com.example.parshad.data.entities.Suggestion
+import com.example.parshad.databinding.FragmentAddSuggestionBinding
 import com.example.parshad.ui.MainActivity
 import com.example.parshad.ui.viewModels.MainViewModel
-import com.example.parshadapp.util.Constants
+import com.example.parshad.util.Constants
 import java.io.FileNotFoundException
 import java.util.*
 
@@ -170,7 +169,7 @@ class AddSuggestionFragment : BaseFragment() {
                 dialogBox.dismiss()
                 showToast("Photo uploaded successfully")
                 attachedFile=task.result.toString()
-                attachedType=Constants.KEY_IMAGE_TYPE
+                attachedType= Constants.KEY_IMAGE_TYPE
                 onUploaded()
             } else {
                 showToast("Photo cannot be uploaded : ${task.result}")

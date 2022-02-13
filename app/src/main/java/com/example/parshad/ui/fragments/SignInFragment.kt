@@ -15,8 +15,13 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.navArgs
+import com.example.parshad.R
+import com.example.parshad.data.entities.User
+import com.example.parshad.data.remote.AuthDatabase
+import com.example.parshad.databinding.FragmentSignInBinding
 import com.example.parshad.ui.AuthActivity
 import com.example.parshad.ui.MainActivity
+import com.example.parshad.util.Constants
 import com.google.firebase.firestore.FirebaseFirestore
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
@@ -97,7 +102,7 @@ class SignInFragment : BaseFragment() {
             pickImage.launch(intent)
         }
         binding.maleCard.setOnClickListener {
-            gender=Constants.USER_GENDER_MALE
+            gender= Constants.USER_GENDER_MALE
             Log.d("SignIn",gender)
             afterSetGender()
         }

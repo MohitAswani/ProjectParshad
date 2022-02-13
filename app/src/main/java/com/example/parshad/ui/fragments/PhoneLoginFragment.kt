@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.navigation.fragment.findNavController
 import com.example.parshad.data.remote.AuthDatabase
 import com.example.parshad.databinding.FragmentLoginPhoneBinding
