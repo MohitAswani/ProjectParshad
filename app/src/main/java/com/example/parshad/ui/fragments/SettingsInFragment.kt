@@ -18,38 +18,85 @@ import androidx.navigation.fragment.navArgs
 import com.example.parshad.R
 import com.example.parshad.data.entities.User
 import com.example.parshad.data.remote.AuthDatabase
-import com.example.parshad.databinding.FragmentSignInBinding
+import com.example.parshad.databinding.FragmentSettingsBinding
 import com.example.parshad.ui.AuthActivity
 import com.example.parshad.ui.MainActivity
+import com.example.parshad.ui.viewModels.MainViewModel
 import com.example.parshad.util.Constants
-import com.google.firebase.firestore.FirebaseFirestore
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
 
-class SignInFragment : BaseFragment() {
+class SettingsInFragment : BaseFragment() {
 
-    private lateinit var _binding: FragmentSignInBinding
+    private lateinit var _binding: FragmentSettingsBinding
     private val binding get() = _binding
-    private var encodedImage: String?=null
-    private var gender=""
-    private val args: SignInFragmentArgs by navArgs()
+    private var encodedImage: String? = null
+    private var gender = ""
+    private var phoneNumber = ""
+    private var role = ""
     private lateinit var authDatabase: AuthDatabase
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentSignInBinding.inflate(inflater, container, false)
-        authDatabase = (activity as AuthActivity).authDatabase
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
+        authDatabase = (activity as MainActivity).authDatabase
+        viewModel = (activity as MainActivity).mainViewModel
+        setUserDetails()
         setListeners()
         return _binding.root
     }
 
+    private fun setUserDetails() {
+        binding.apply {
+            viewModel.userName.observe(viewLifecycleOwner) {
+                editFullName.setText(it)
+            }
+
+            viewModel.userImage.observe(viewLifecycleOwner) {
+                if (it != null && it.isNotBlank() && it.isNotEmpty()) {
+                    userImage.setImageBitmap(getUserImage(it))
+                    encodedImage=it
+                }
+            }
+
+            viewModel.userWard.observe(viewLifecycleOwner) {
+                editAddress.setText(it)
+            }
+
+            viewModel.userAadhar.observe(viewLifecycleOwner) {
+                editAadharNumber.setText(it)
+            }
+
+            viewModel.userGender.observe(viewLifecycleOwner) {
+                this@SettingsInFragment.gender=it
+                afterSetGender()
+            }
+
+            viewModel.userPhone.observe(viewLifecycleOwner) {
+                this@SettingsInFragment.phoneNumber=it
+            }
+
+            viewModel.userRole.observe(viewLifecycleOwner) {
+                this@SettingsInFragment.role=it
+            }
+        }
+
+    }
+
+    private fun getUserImage(encodedImage: String): Bitmap {
+
+        val bytes = Base64.decode(encodedImage, Base64.DEFAULT)
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+
+    }
 
     private fun highlightEmptyFields(): Boolean {
         binding.apply {
-            if(encodedImage.isNullOrEmpty()){
+            if (encodedImage.isNullOrEmpty()) {
                 addImageText.setTextColor(Color.RED)
             }
             if (editFullName.text.isNullOrEmpty()) {
@@ -67,8 +114,7 @@ class SignInFragment : BaseFragment() {
                 return false
             }
 
-            if(this@SignInFragment.gender.isEmpty())
-            {
+            if (this@SettingsInFragment.gender.isEmpty()) {
                 gender.setTextColor(Color.RED)
                 return false
             }
@@ -78,22 +124,25 @@ class SignInFragment : BaseFragment() {
     }
 
     private fun setListeners() {
+
+        binding.addImageText.visibility = View.GONE
+        binding.addUserImg.visibility = View.GONE
+
         binding.signUpButton.setOnClickListener {
-            if (highlightEmptyFields()) {
+            if(highlightEmptyFields())
+            {
                 binding.apply {
                     val user = User(
-                        name=editFullName.text.toString(),
-                        image = encodedImage?:"",
-                        phoneNumber = args.phoneNumber,
-                        gender = this@SignInFragment.gender,
+                        name = editFullName.text.toString(),
+                        image = encodedImage ?: "",
+                        phoneNumber =this@SettingsInFragment.phoneNumber,
+                        gender = this@SettingsInFragment.gender,
                         currentAddress = editAddress.text.toString(),
                         aadhar = editAadharNumber.text.toString(),
-                        userRole = args.role
+                        userRole = this@SettingsInFragment.role
                     )
                     signUp(user)
                 }
-            } else {
-                showToast("Please fill all the fields")
             }
         }
         binding.imageLayout.setOnClickListener {
@@ -102,77 +151,62 @@ class SignInFragment : BaseFragment() {
             pickImage.launch(intent)
         }
         binding.maleCard.setOnClickListener {
-            gender= Constants.USER_GENDER_MALE
-            Log.d("SignIn",gender)
+            gender = Constants.USER_GENDER_MALE
+            Log.d("SignIn", gender)
             afterSetGender()
         }
         binding.femaleCard.setOnClickListener {
-            Log.d("SignIn",gender)
-            gender=Constants.USER_GENDER_FEMALE
+            Log.d("SignIn", gender)
+            gender = Constants.USER_GENDER_FEMALE
             afterSetGender()
         }
         binding.otherCard.setOnClickListener {
-            Log.d("SignIn",gender)
-            gender=Constants.USER_GENDER_OTHER
+            Log.d("SignIn", gender)
+            gender = Constants.USER_GENDER_OTHER
             afterSetGender()
         }
     }
 
-    private fun afterSetGender(){
-        when(gender){
-            Constants.USER_GENDER_MALE->{
+    private fun afterSetGender() {
+        when (gender) {
+            Constants.USER_GENDER_MALE -> {
                 binding.apply {
                     maleButton.setTextColor(resources.getColor(R.color.themeColor))
                     femaleButton.setTextColor(resources.getColor(R.color.fontColorLight))
                     otherButton.setTextColor(resources.getColor(R.color.fontColorLight))
-                    maleCard.strokeColor=resources.getColor(R.color.themeColor)
-                    femaleCard.strokeColor=resources.getColor(R.color.fontColorLight)
-                    otherCard.strokeColor=resources.getColor(R.color.fontColorLight)
+                    maleCard.strokeColor = resources.getColor(R.color.themeColor)
+                    femaleCard.strokeColor = resources.getColor(R.color.fontColorLight)
+                    otherCard.strokeColor = resources.getColor(R.color.fontColorLight)
                 }
             }
-            Constants.USER_GENDER_FEMALE->{
+            Constants.USER_GENDER_FEMALE -> {
                 binding.apply {
                     maleButton.setTextColor(resources.getColor(R.color.fontColorLight))
                     femaleButton.setTextColor(resources.getColor(R.color.themeColor))
                     otherButton.setTextColor(resources.getColor(R.color.fontColorLight))
-                    maleCard.strokeColor=resources.getColor(R.color.fontColorLight)
-                    femaleCard.strokeColor=resources.getColor(R.color.themeColor)
-                    otherCard.strokeColor=resources.getColor(R.color.fontColorLight)
+                    maleCard.strokeColor = resources.getColor(R.color.fontColorLight)
+                    femaleCard.strokeColor = resources.getColor(R.color.themeColor)
+                    otherCard.strokeColor = resources.getColor(R.color.fontColorLight)
                 }
             }
-            Constants.USER_GENDER_OTHER->{
+            Constants.USER_GENDER_OTHER -> {
                 binding.apply {
                     maleButton.setTextColor(resources.getColor(R.color.fontColorLight))
                     femaleButton.setTextColor(resources.getColor(R.color.themeColor))
                     otherButton.setTextColor(resources.getColor(R.color.fontColorLight))
-                    maleCard.strokeColor=resources.getColor(R.color.fontColorLight)
-                    femaleCard.strokeColor=resources.getColor(R.color.fontColorLight)
-                    otherCard.strokeColor=resources.getColor(R.color.themeColor)
+                    maleCard.strokeColor = resources.getColor(R.color.fontColorLight)
+                    femaleCard.strokeColor = resources.getColor(R.color.fontColorLight)
+                    otherCard.strokeColor = resources.getColor(R.color.themeColor)
                 }
             }
-            else->{}
+            else -> {}
         }
     }
 
     private fun signUp(user: User) {
-        loading(true)
-        showToast("sign in")
-        val database = FirebaseFirestore.getInstance()
-        database.collection(Constants.KEY_COLLECTIONS_USER)
-            .add(user)
-            .addOnSuccessListener {
-                loading(false)
-                (activity as AuthActivity).authViewModel.saveUserData(user)
-                (activity as AuthActivity).authViewModel.setIsSignedInFromDataStore(true)
-                val intent = Intent(requireActivity(), MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-            }
-            .addOnFailureListener {
-                loading(false)
-                showToast(it.message.toString())
-            }
-
+        (activity as MainActivity).mainViewModel.saveUserData(user)
+//        viewModel.changeSettings()
+        requireActivity().onBackPressed()
     }
 
     private fun encodeImage(bitmap: Bitmap): String {

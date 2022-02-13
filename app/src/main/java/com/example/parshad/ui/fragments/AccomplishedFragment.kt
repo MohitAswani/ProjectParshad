@@ -95,6 +95,9 @@ class AccomplishedFragment : BaseFragment() {
                 }
             }
         }
+        binding.backBtn.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
     }
 
     private fun onFileClicked(file: String, fileName: String) {

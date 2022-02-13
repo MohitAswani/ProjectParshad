@@ -95,4 +95,8 @@
         android:id="@+id/myProblemFragment"
         android:name="com.example.parshad.ui.fragments.MyProblemFragment"
         android:label="MyProblemFragment" />
+    <fragment
+        android:id="@+id/settingsInFragment"
+        android:name="com.example.parshad.ui.fragments.SettingsInFragment"
+        android:label="SettingsInFragment" />
 </navigation>

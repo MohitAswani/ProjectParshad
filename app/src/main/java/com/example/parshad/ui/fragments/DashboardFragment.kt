@@ -12,7 +12,9 @@ import android.util.Log
 import android.view.*
 import android.webkit.CookieManager
 import android.webkit.URLUtil
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.parshad.R
@@ -22,6 +24,9 @@ import com.example.parshad.ui.MainActivity
 import com.example.parshad.ui.viewModels.MainViewModel
 import com.example.parshad.util.Constants
 import com.example.parshad.util.Status
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class DashboardFragment : BaseFragment() {
@@ -29,7 +34,12 @@ class DashboardFragment : BaseFragment() {
     private lateinit var _binding: FragmentDashboardBinding
     private val binding get() = _binding
     private lateinit var viewModel: MainViewModel
-    private val rep: Long = 0L
+    private var rep: Long = 0L
+
+    override fun onPause() {
+        super.onPause()
+        rep=0
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,6 +55,8 @@ class DashboardFragment : BaseFragment() {
         return _binding.root
     }
 
+    var job: Job?=null
+
     private fun setObservers() {
         viewModel.problems.observe(viewLifecycleOwner) { response ->
             if (response != null) {
@@ -52,10 +64,28 @@ class DashboardFragment : BaseFragment() {
                     Status.SUCCESS -> {
                         response.data?.let {
                             Log.d("Dashboard", it.toString())
-                            if (it.size != 0)
+                            if (it.size != 0) {
+                                binding.recentProblemCard.visibility = View.VISIBLE
+                                binding.recentProblemTxt.visibility = View.VISIBLE
                                 setRecentProblem(it[0])
+                                rep=0
+                                job?.cancel()
+                            }
                             else {
-                                viewModel.loadProblems()
+                                binding.recentProblemCard.visibility = View.GONE
+                                binding.recentProblemTxt.visibility = View.GONE
+                                Log.d("Dashboard", rep.toString())
+                                if(rep<10L) {
+                                    rep=rep.plus(1L)
+                                    job = lifecycleScope.launch {
+                                        delay(2000L)
+                                        viewModel.loadProblems()
+
+                                    }
+                                }
+                                else{
+                                    job?.cancel()
+                                }
                             }
                         }
                     }
@@ -83,6 +113,8 @@ class DashboardFragment : BaseFragment() {
             findNavController().navigate(action)
         }
     }
+
+
 
     private fun setUserName() {
         viewModel.getNameFromDataStore()

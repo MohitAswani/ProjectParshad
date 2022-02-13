@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.parshad.MyApplication
 import com.example.parshad.data.entities.Problems
 import com.example.parshad.data.entities.Suggestion
+import com.example.parshad.data.entities.User
 import com.example.parshad.data.remote.AuthDatabase
 import com.example.parshad.util.Constants
 import com.example.parshad.util.Resource
@@ -26,8 +27,10 @@ class MainViewModel(
     val userName = MutableLiveData<String>()
     val userImage = MutableLiveData<String>()
     val userPhone = MutableLiveData<String>()
+    val userAadhar = MutableLiveData<String>()
     val userWard = MutableLiveData<String>()
     val userRole = MutableLiveData<String>()
+    val userGender = MutableLiveData<String>()
     val problems = MutableLiveData<Resource<MutableList<Problems>>>()
     val myproblems = MutableLiveData<Resource<MutableList<Problems>>>()
     val suggestions = MutableLiveData<Resource<MutableList<Suggestion>>>()
@@ -73,6 +76,26 @@ class MainViewModel(
         }
     }
 
+    fun getUserGenderFromDataStore() {
+        viewModelScope.launch {
+            userPreferences.getFromDataStore(Constants.USER_ADDRESS).catch { e ->
+                e.printStackTrace()
+            }.collect {
+                userGender.postValue(it)
+            }
+        }
+    }
+
+    fun getAadhaarFromDataStore() {
+        viewModelScope.launch {
+            userPreferences.getFromDataStore(Constants.USER_AADHAR).catch { e ->
+                e.printStackTrace()
+            }.collect {
+                userAadhar.postValue(it)
+            }
+        }
+    }
+
     fun getUserPhoneFromDataStore() {
         viewModelScope.launch {
             userPreferences.getFromDataStore(Constants.KEY_PHONE_NUMBER).catch { e ->
@@ -90,6 +113,43 @@ class MainViewModel(
             }.collect {
                 userRole.postValue(it)
             }
+        }
+    }
+
+    fun saveUserData(user: User) {
+        viewModelScope.launch {
+            userPreferences.saveToDataStore(Constants.USER_NAME, user.name)
+        }
+        viewModelScope.launch {
+            userPreferences.saveToDataStore(
+                Constants.USER_PHONE_NUMBER,
+                user.phoneNumber
+            )
+        }
+        viewModelScope.launch {
+            userPreferences.saveToDataStore(
+                Constants.USER_AADHAR,
+                user.aadhar
+            )
+        }
+        viewModelScope.launch {
+            userPreferences.saveToDataStore(
+                Constants.USER_ADDRESS,
+                user.currentAddress
+            )
+        }
+        viewModelScope.launch {
+            userPreferences.saveToDataStore(
+                Constants.USER_GENDER,
+                user.gender
+            )
+        }
+        viewModelScope.launch { userPreferences.saveToDataStore(Constants.USER_IMAGE, user.image) }
+        viewModelScope.launch {
+            userPreferences.saveToDataStore(
+                Constants.USER_ROLE,
+                user.userRole
+            )
         }
     }
 
@@ -400,8 +460,33 @@ class MainViewModel(
         return accomplishedList
     }
 
-    fun postAccomplished(problem: Problems) {
+    private fun postAccomplished(problem: Problems) {
         database.firestore.collection(Constants.KEY_ACCOMPLISHED)
             .add(problem)
+    }
+
+    fun changeSettings() {
+        database.firestore
+            .collection(Constants.KEY_COLLECTIONS_USER)
+            .whereEqualTo(
+                Constants.USER_PHONE_NUMBER,
+                userPhone.value.toString()
+            )
+            .addSnapshotListener { snapshots, e ->
+                if (e != null) {
+                    Log.d("AuthDatabase", e.toString())
+                    return@addSnapshotListener
+                }
+                if (snapshots != null) {
+                    Log.d("MainViewModel",userPhone.value.toString())
+                    Log.d("MainViewModel",snapshots.documents.toString())
+                    for (dc in snapshots.documents) {
+                        dc.reference.update(Constants.USER_NAME,userName)
+                        dc.reference.update(Constants.USER_IMAGE,userImage)
+                        dc.reference.update(Constants.USER_ADDRESS,userWard)
+                        dc.reference.update(Constants.USER_AADHAR,userAadhar)
+                    }
+                }
+            }
     }
 }

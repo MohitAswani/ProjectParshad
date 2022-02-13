@@ -1,5 +1,6 @@
 package com.example.parshad.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -31,8 +32,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var mainViewModel: MainViewModel
     lateinit var binding: ActivityMainBinding
     private lateinit var drawerLayout: DrawerLayout
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.setBackgroundDrawable(resources.getDrawable(R.drawable.toolbar_drawable))
         supportActionBar?.show()
         authDatabase = AuthDatabase()
         val mainViewModelFactory = MainViewModelFactory(application as MyApplication, authDatabase)
@@ -79,6 +82,11 @@ class MainActivity : AppCompatActivity() {
                 findNavController(R.id.foodNavHostFragment).navigate(R.id.myProblemFragment)
                 true
             }
+            if(item.itemId==R.id.nav_settings){
+                binding.drawerLayout.close()
+                findNavController(R.id.foodNavHostFragment).navigateUp()
+                findNavController(R.id.foodNavHostFragment).navigate(R.id.settingsInFragment)
+            }
             false
         }
     }
@@ -96,6 +104,8 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.getUserWardFromDataStore()
         mainViewModel.getUserImageFromDataStore()
         mainViewModel.getUserRoleFromDataStore()
+        mainViewModel.getAadhaarFromDataStore()
+        mainViewModel.getUserGenderFromDataStore()
     }
 
     override fun onSupportNavigateUp(): Boolean {

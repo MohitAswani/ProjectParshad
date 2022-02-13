@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="40dp"
+            >
+
+            <LinearLayout
+                android:id="@+id/sign_up_img_bg"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/app_color"
+                android:orientation="horizontal"
+                app:layout_constraintHeight_percent="0.10"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/profile_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/setting"
+                android:textColor="@color/fontColor"
+                android:textSize="48sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="RtlHardcoded" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/image_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/add_img"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sign_up_img_bg">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/user_image"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:riv_oval="true"
+                    tools:ignore="ImageContrastCheck" />
+
+                <TextView
+                    android:id="@+id/add_image_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="8dp"
+                    android:text="@string/add_image"
+                    android:textColor="@color/fontColor"
+                    android:textSize="14sp"
+                    app:layout_constraintLeft_toLeftOf="@id/add_user_img"
+                    app:layout_constraintRight_toRightOf="@id/add_user_img"
+                    app:layout_constraintTop_toBottomOf="@id/add_user_img" />
+
+                <ImageView
+                    android:id="@+id/add_user_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/add_user"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/full_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="32dp"
+                android:text="@string/full_name"
+                android:textColor="@color/fontColorLight"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_layout"
+                tools:ignore="RtlHardcoded,TextContrastCheck" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/full_name_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="35dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="7dp"
+                app:cardElevation="4dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/full_name"
+                tools:ignore="RtlHardcoded">
+
+                <EditText
+                    android:id="@+id/edit_full_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="true"
+                    android:background="@drawable/custom_input"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="16dp"
+                    android:textColor="#78909C"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/full_name"
+                    tools:text="Mohit Aswani" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/gender"
+                android:textColor="@color/fontColorLight"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/full_name_card"
+                tools:ignore="RtlHardcoded,TextContrastCheck" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/gender_radio_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="35dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/gender">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/male_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:strokeColor="@color/fontColorLight"
+                    app:strokeWidth="2dp"
+                    tools:ignore="RtlHardcoded">
+
+                    <TextView
+                        android:id="@+id/male_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:padding="16dp"
+                        android:text="@string/male"
+                        android:textColor="@color/fontColorLight"
+                        android:textSize="18sp"
+                        />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/female_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintStart_toEndOf="@id/male_card"
+                    app:layout_constraintEnd_toStartOf="@id/other_card"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:strokeColor="@color/fontColorLight"
+                    app:strokeWidth="2dp"
+                    tools:ignore="RtlHardcoded">
+
+                    <TextView
+                        android:id="@+id/female_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:padding="16dp"
+                        android:text="@string/female"
+                        android:textColor="@color/fontColorLight"
+                        android:textSize="18sp" />
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/other_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:strokeColor="@color/fontColorLight"
+                    app:strokeWidth="2dp"
+                    tools:ignore="RtlHardcoded">
+
+                    <TextView
+                        android:id="@+id/other_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@null"
+                        android:padding="16dp"
+                        android:text="@string/other"
+                        android:textColor="@color/fontColorLight"
+                        android:textSize="18sp" />
+                </com.google.android.material.card.MaterialCardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="16dp"
+                android:text="Address"
+                android:textColor="@color/fontColorLight"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/gender_radio_group"
+                tools:ignore="RtlHardcoded,TextContrastCheck" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/address_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="35dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="7dp"
+                app:cardElevation="4dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/address"
+                tools:ignore="RtlHardcoded">
+
+                <EditText
+                    android:id="@+id/edit_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="true"
+                    android:background="@drawable/custom_input"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="16dp"
+                    android:textColor="#78909C"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    tools:text="Bairagarh, Bhopal" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/aadhar_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/aadhar_number"
+                android:textColor="@color/fontColorLight"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/address_card"
+                tools:ignore="RtlHardcoded,TextContrastCheck" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/aadhar_number_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="35dp"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="7dp"
+                app:cardElevation="4dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/aadhar_number"
+                tools:ignore="RtlHardcoded">
+
+                <EditText
+                    android:id="@+id/edit_aadhar_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="true"
+                    android:background="@drawable/custom_input"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:padding="16dp"
+                    android:textColor="@color/fontColorLight"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    tools:text="Bairagarh, Bhopal" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/sign_up_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:padding="16dp"
+                android:text="Save"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:cornerRadius="7dp"
+                app:elevation="4dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/aadhar_number_card" />
+
+            <ProgressBar
+                android:id="@+id/sign_up_pb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                app:layout_constraintTop_toTopOf="@id/sign_up_button"
+                app:layout_constraintLeft_toLeftOf="@id/sign_up_button"
+                app:layout_constraintRight_toRightOf="@id/sign_up_button"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

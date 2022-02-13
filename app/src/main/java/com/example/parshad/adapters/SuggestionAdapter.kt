@@ -47,7 +47,6 @@ class SuggestionAdapter: RecyclerView.Adapter<SuggestionAdapter.ProblemViewHolde
 
             binding.postUserName.text=suggestion.posterName
             binding.postUserAddress.text=suggestion.posterWard
-            binding.postLikeCount.text=suggestion.suggestionLikes.toString()
             binding.tvDesc.text=suggestion.description
 
             when(suggestion.attachmentType){

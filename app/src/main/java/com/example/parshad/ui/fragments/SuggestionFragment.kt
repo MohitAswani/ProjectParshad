@@ -71,6 +71,9 @@ class SuggestionFragment : BaseFragment() {
     }
 
     private fun setListeners() {
+        binding.backBtn.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
         binding.addSuggestionBtn.setOnClickListener {
             val action = SuggestionFragmentDirections.actionSuggestionFragmentToAddSuggestionFragment()
             findNavController().navigate(action)

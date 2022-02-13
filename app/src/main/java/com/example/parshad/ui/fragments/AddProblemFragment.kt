@@ -151,6 +151,7 @@ class AddProblemFragment : BaseFragment() {
     {
         val dialogBox= ProgressDialog(requireContext())
         dialogBox.setMessage("Uploading")
+        dialogBox.setCancelable(false)
 
         dialogBox.show()
 
@@ -201,6 +202,7 @@ class AddProblemFragment : BaseFragment() {
     {
         val dialogBox= ProgressDialog(requireContext())
         dialogBox.setMessage("Uploading")
+        dialogBox.setCancelable(false)
 
         dialogBox.show()
 
@@ -251,6 +253,7 @@ class AddProblemFragment : BaseFragment() {
     {
         val dialogBox= ProgressDialog(requireContext())
         dialogBox.setMessage("Uploading")
+        dialogBox.setCancelable(false)
 
         dialogBox.show()
 

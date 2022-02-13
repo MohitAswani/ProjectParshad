@@ -97,6 +97,9 @@ class ProblemsFragment : BaseFragment() {
     }
 
     private fun setListeners() {
+        binding.backBtn.setOnClickListener {
+            requireActivity().onBackPressed()
+        }
         binding.addProblemBtn.setOnClickListener {
             val action = ProblemsFragmentDirections.actionProblemsFragmentToAddProblemFragment()
             findNavController().navigate(action)
